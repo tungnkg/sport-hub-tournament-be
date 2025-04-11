@@ -1,0 +1,38 @@
+<div style="margin: 0;
+            margin-top: 70px;
+            padding: 92px 30px 115px;
+            background: #ffffff;
+            border-radius: 30px;
+            text-align: center;">
+    <div style="width: 100%; max-width: 489px; margin: 0 auto;">
+        <h1 style="margin: 0;
+                font-size: 24px;
+                font-weight: 500;
+                color: #1f1f1f;">
+            OTP xác thực của bạn!!
+        </h1>
+        <p style="margin: 0;
+                margin-top: 17px;
+                font-size: 16px;
+                font-weight: 500;">
+            Xin chào <th:block th:text="${toFullName}"></th:block>,
+        </p>
+        <p style="margin: 0;
+                margin-top: 17px;
+                font-weight: 500;
+                letter-spacing: 0.56px;">
+            Bạn đang yêu cầu đăng ký tài khoản Moocs của bạn
+            <span style="font-weight: 600; color: #1f1f1f;">OTP sẽ có hiệu lực trong <th:block th:text="${otpTtl}"></th:block> phút</span>.
+            Đây là mã OTP đăng ký, vui lòng không cung cấp cho bất kỳ ai. Nếu không phải là bạn yêu cầu hãy bỏ
+            qua email này.
+        </p>
+        <p style="margin: 0;
+                margin-top: 60px;
+                font-size: 40px;
+                font-weight: 600;
+                letter-spacing: 25px;
+                color: #ba3d4f;">
+            <th:block th:text="${otp}"></th:block>
+        </p>
+    </div>
+</div>
