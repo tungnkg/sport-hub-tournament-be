@@ -132,28 +132,28 @@ public class AuthUseCaseImpl implements IAuthUseCase {
   }
 
 
-  private void sendRegisterOTP(RegisterAccountCustom registerAccountCustom) throws JsonProcessingException {
-    String registerAccountValue = JsonUtils.toJson(registerAccountCustom);
-    //cache information and OTP
-    CacheUtils.setIfNotExists(String.format("%s_%s_OTP", REGISTER_ACCOUNT_KEY_PREFIX, registerAccountCustom.getEmail()),
-            registerAccountValue, TTL_TIME_AMOUNT, TimeUnit.MINUTES);
-    //cache session
-    CacheUtils.setIfNotExists(String.format("%s_%s", REGISTER_ACCOUNT_SESSION_KEY_PREFIX, registerAccountCustom.getEmail()),
-            registerAccountValue, SESSION_EXPIRATION_TIME, TimeUnit.MINUTES);
-    log.info("Send register account OTP for user with email {} at {}", registerAccountCustom.getEmail(), Instant.now());
-
-    //send mail
-    Map<String, Object> model = new HashMap<>();
-    model.put("toFullName", registerAccountCustom.getFullName());
-    model.put("otp", registerAccountCustom.getOtp());
-    model.put("otpTtl", TTL_TIME_AMOUNT);
-    RequestSendMail requestSendMail = RequestSendMail.builder()
-            .to(registerAccountCustom.getEmail())
-            .subject("Xác thực đăng ký tài khoản Moocs")
-            .templateName("otp-register-account-template.html")
-            .body(model)
-            .build();
-    emailService.sendNewMail(requestSendMail);
-  }
+//  private void sendRegisterOTP(RegisterAccountCustom registerAccountCustom) throws JsonProcessingException {
+//    String registerAccountValue = JsonUtils.toJson(registerAccountCustom);
+//    //cache information and OTP
+//    CacheUtils.setIfNotExists(String.format("%s_%s_OTP", REGISTER_ACCOUNT_KEY_PREFIX, registerAccountCustom.getEmail()),
+//            registerAccountValue, TTL_TIME_AMOUNT, TimeUnit.MINUTES);
+//    //cache session
+//    CacheUtils.setIfNotExists(String.format("%s_%s", REGISTER_ACCOUNT_SESSION_KEY_PREFIX, registerAccountCustom.getEmail()),
+//            registerAccountValue, SESSION_EXPIRATION_TIME, TimeUnit.MINUTES);
+//    log.info("Send register account OTP for user with email {} at {}", registerAccountCustom.getEmail(), Instant.now());
+//
+//    //send mail
+//    Map<String, Object> model = new HashMap<>();
+//    model.put("toFullName", registerAccountCustom.getFullName());
+//    model.put("otp", registerAccountCustom.getOtp());
+//    model.put("otpTtl", TTL_TIME_AMOUNT);
+//    RequestSendMail requestSendMail = RequestSendMail.builder()
+//            .to(registerAccountCustom.getEmail())
+//            .subject("Xác thực đăng ký tài khoản Moocs")
+//            .templateName("otp-register-account-template.html")
+//            .body(model)
+//            .build();
+//    emailService.sendNewMail(requestSendMail);
+//  }
 
 }
